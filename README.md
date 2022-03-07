@@ -1,7 +1,7 @@
 # 7th Sea Second Edition System (Unofficial)
 
 # FORK NOTE
-This is a fork of the official system to fix V9 compatibility. I have fixed most of the obvious errors relating to adding/editing/deleting items on the character sheet. Please let me know if there are any others - I don't run a 7th Seas game right now so I will not catch them otherwise.
+This is a fork of the original system to bring V9 compatibility. I have fixed most of the obvious errors relating to adding/editing/deleting items on the character sheet. Please let me know if there are any others - I don't run a 7th Seas game right now so I will not catch them otherwise.
 
 ## Roleplaying System
 [7th Sea](https://www.chaosium.com/7th-sea/) is a tabletop roleplaying game of swashbuckling and intrigue, exploration and adventure, taking place on the continent of Théah, a land of magic and mystery inspired by our own Europe.
