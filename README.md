@@ -1,4 +1,4 @@
-# 7th Sea Second Edition System (Unofficial)
+# 7th Sea Second Edition System (Fork)
 
 # FORK NOTE
 This is a fork of the original system to bring V9 compatibility. I have fixed most of the obvious errors relating to adding/editing/deleting items on the character sheet. Please let me know if there are any others - I don't run a 7th Seas game right now so I will not catch them otherwise.
