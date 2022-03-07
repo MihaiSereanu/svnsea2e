@@ -20,21 +20,8 @@ export class ItemSheetSS2e extends ItemSheet {
 
   /** @override */
   getData(options) {
-    // const data = super.getData();
     const baseData = super.getData(options);
     const { isOwner } = this.document;
-    console.log('baseData', baseData);
-    console.log('this.item', this.item);
-    // mergeObject(data, {
-    //   owner: isOwner,
-    //   itemType: SVNSEA2E.itemTypes[data.item.type],
-    //   options: this.options,
-    //   editable: this.isEditable,
-    //   cssClass: isOwner ? "editable" : "locked",
-    //   config: CONFIG.SVNSEA2E,
-    //   dtypes: ["String", "Number", "Boolean"],
-    // });
-
     const sheetData = {
       owner: isOwner,
       itemType: SVNSEA2E.itemTypes[baseData.item.type],

@@ -4,7 +4,7 @@
   "description": "The 7th Sea Second Edition (Unofficial) system for FoundryVTT!",
   "version": "THIS IS GENERATED",
   "minimumCoreVersion" : "0.8.4",
-  "compatibleCoreVersion" : "0.8.9",
+  "compatibleCoreVersion" : "",
   "templateVersion": 2,
   "author": "psychoph",
   "esmodules": ["module/svnsea2e.js"],

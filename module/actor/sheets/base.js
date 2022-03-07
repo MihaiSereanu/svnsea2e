@@ -23,7 +23,6 @@ export default class ActorSheetSS2e extends ActorSheet {
   /** @override */
   getData(options) {
     const baseData = super.getData(options);
-    console.log(baseData);
     const { isOwner: owner, limited } = this.document;
     const sheetData = {
       owner,
@@ -145,7 +144,7 @@ export default class ActorSheetSS2e extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').on('click', (ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
+      const item = this.actor.items.get(li.data('item-id'))
       item.sheet.render(true);
     });
 
@@ -183,7 +182,7 @@ export default class ActorSheetSS2e extends ActorSheet {
     }
 
     // Drag events for macros.
-    if (this.actor.isOwner) {
+      if (this.actor.isOwner) {
       const handler = (ev) => this._onDragItemStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains('inventory-header')) return;
@@ -371,7 +370,7 @@ export default class ActorSheetSS2e extends ActorSheet {
     delete itemData.data.type;
 
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments("Item", [itemData])
   }
   /* -------------------------------------------- */
 
@@ -385,11 +384,11 @@ export default class ActorSheetSS2e extends ActorSheet {
     const li = event.currentTarget.closest('.item');
     const itemid = li.dataset.itemId;
 
-    const item = this.actor.getOwnedItem(itemid);
+    const item = this.actor.items.get(itemid)
     if (item && item.data.type === 'background')
       await this._processBackgroundDelete(item.data.data);
 
-    await this.actor.deleteOwnedItem(itemid);
+    await this.actor.deleteEmbeddedDocuments("Item", [itemid]);
   }
 
   /* -------------------------------------------- */
@@ -401,8 +400,8 @@ export default class ActorSheetSS2e extends ActorSheet {
   async _onItemSummary(event) {
     event.preventDefault();
     const li = $(event.currentTarget).parents('.item');
-    const item = this.actor.getOwnedItem(li.data('item-id'));
-    const chatData = item.getChatData({ secrets: this.actor.owner });
+    const item = this.actor.items.get(li.data('item-id'))
+    const chatData = item.getRollData({ secrets: this.actor.owner });
 
     // Toggle summary
     if (li.hasClass('expanded')) {
@@ -1137,12 +1136,12 @@ export default class ActorSheetSS2e extends ActorSheet {
     const rollMode = game.settings.get('core', 'rollMode');
     // Basic chat message
     const chatData = {
-      user: game.user._id,
+      user: game.user.id,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
       content: html,
       image: actor.img,
       speaker: {
-        actor: actor._id,
+        actor: actor.id,
         token: actor.token,
         alias: actor.name,
       },

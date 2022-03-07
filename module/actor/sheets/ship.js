@@ -4,12 +4,14 @@ import {
   getShipBackgroundItems,
 } from '../../helpers.js';
 
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
 export class ActorSheetSS2eShip extends ActorSheetSS2e {
   /** @override */
+
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['svnsea2e', 'sheet', 'actor', 'ship'],
@@ -342,8 +344,10 @@ export class ActorSheetSS2eShip extends ActorSheetSS2e {
     if (!actor) return false;
 
     const role = event.target.dataset.role;
-
-    await actor.setCrewMemberRole(this.actor.id, role);
+    await actor.setFlag('svnsea2e', 'crewMember', {
+      shipId: this.actor.id,
+      role: role
+    });
     this.actor
       .update({
         'flags.svnsea2e.shipsCrew': crew,
@@ -408,8 +412,10 @@ export class ActorSheetSS2eShip extends ActorSheetSS2e {
 
     const actorId = event.currentTarget.parentElement.dataset.actorId;
     const actor = game.actors.get(actorId);
-
-    await actor.setCrewMemberRole(this.actor.id);
+    actor.setFlag('svnsea2e', 'crewMember', {
+      shipId: this.actor.id,
+      role: role,
+    });
   }
 
   /**
@@ -423,7 +429,7 @@ export class ActorSheetSS2eShip extends ActorSheetSS2e {
     const actorId = $(event.currentTarget).parents('.item').data('actorId');
     const actor = game.actors.get(actorId);
 
-    await actor.removeFromCrew();
+    await actor.unsetFlag('svnsea2e', 'crewMember');
 
     const shipsCrew = this.actor.getFlag('svnsea2e', 'shipsCrew');
 
