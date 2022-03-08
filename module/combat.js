@@ -1,4 +1,5 @@
 export function updateInitiative(actorId, raise) {
+
   const nRaise = parseFloat(raise);
   const activeCombat = game.combats.filter((combat) => combat.scene.active);
 
@@ -9,6 +10,8 @@ export function updateInitiative(actorId, raise) {
 
   activeCombat.forEach((combat) => {
     const actors = combat.combatants.filter((c) => c.actor.id === actorId);
+    console.log(combat.combatants)
+    console.log(actors)
 
     if (actors.length === 0) {
       ui.notifications.error(`This actor does not participate in this combat.`);

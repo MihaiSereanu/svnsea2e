@@ -8,6 +8,7 @@ export class SvnSea2EActor extends Actor {
    */
   prepareData() {
     super.prepareData();
+    console.log('pepe')
 
     const actorData = this.data;
     const data = actorData.data;

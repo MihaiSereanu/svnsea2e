@@ -1109,6 +1109,7 @@ export default class ActorSheetSS2e extends ActorSheet {
         ' ' +
         game.i18n.localize('SVNSEA2E.GMIncreasedThreshold');
 
+    console.log(actor)
     const templateData = {
       actor: actor,
       raisetxt:

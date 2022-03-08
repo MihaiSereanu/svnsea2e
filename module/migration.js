@@ -25,7 +25,7 @@ export const migrateWorld = async function () {
   }
 
   // Migrate World Items
-  for (const i of game.items.entities) {
+  for (const i of game.items) {
     try {
       const updateData = migrateItemData(i.data);
       if (!isObjectEmpty(updateData)) {
@@ -226,6 +226,7 @@ export const migrateVirtue = function (actor) {
       },
     };
     actor.document.createEmbeddedDocuments("Item", [itemData])
+
   }
 };
 
